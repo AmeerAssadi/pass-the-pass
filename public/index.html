@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Data Transfer</title>
+    <title>Secure Data Transfer Tool</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,6 +12,16 @@
         <form id="secure-data-form">
             <label for="sensitiveData">Enter Sensitive Data:</label>
             <textarea id="sensitiveData" name="sensitiveData" required></textarea>
+            <p id="error-message" class="error-message"></p>
+
+            <div class="expiration-time-container">
+                <label for="expirationTime">Expiration Time:</label>
+                <select id="expirationTime" name="expirationTime" required>
+                    <option value="600000">10 minutes</option>
+                    <option value="1800000">30 minutes</option>
+                    <option value="3600000">1 hour</option>
+                </select>
+            </div>
 
             <button type="button" onclick="generateLink()">Generate Secure Link</button>
         </form>
