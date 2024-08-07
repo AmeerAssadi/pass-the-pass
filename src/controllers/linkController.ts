@@ -40,5 +40,19 @@ export const viewData = async (req: Request, res: Response) => {
     const decryptedData = decrypt(data.data);
     await data.destroy();
 
+    res.render('viewData', { decryptedData });
+};
+
+export const getDataJson = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const data = await SensitiveData.findOne({ where: { id } });
+
+    if (!data || new Date() > data.expiresAt) {
+        return res.status(404).json({ error: 'Data not found or has expired.' });
+    }
+
+    const decryptedData = decrypt(data.data);
+    await data.destroy();
+
     res.json({ data: decryptedData });
 };
