@@ -1,4 +1,4 @@
-# Secure Data Transfer Tool
+# Pass-The-Pass
 
 Pass-The-Pass project is a secure data transfer tool that allows employees to securely share sensitive information via a one-time-use link and optionally send the link via Slack. It is designed with security in mind, ensuring that sensitive data is only accessed by the intended recipient.
 
