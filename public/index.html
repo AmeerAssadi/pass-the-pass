@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Data Transfer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Secure Data Transfer Tool</h1>
+        <form id="secure-data-form">
+            <label for="sensitiveData">Enter Sensitive Data:</label>
+            <textarea id="sensitiveData" name="sensitiveData" required></textarea>
+
+            <button type="button" onclick="generateLink()">Generate Secure Link</button>
+        </form>
+
+        <div id="result" style="display: none;">
+            <h2>Secure Link:</h2>
+            <p id="secure-link"></p>
+
+            <form id="slack-form">
+                <label for="email">Send via Slack (Email):</label>
+                <input type="email" id="email" name="email" required>
+
+                <button type="button" onclick="sendViaSlack()">Send Link</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
