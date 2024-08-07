@@ -17,11 +17,14 @@ Pass-The-Pass project is a secure data transfer tool that allows employees to se
 
 ## Features
 
-- **Generate Secure Links**: Create a one-time-use link for sharing sensitive information.
+- **Secure Data Encryption**: All sensitive data is encrypted using strong encryption methods before being stored in the database.
+- **One-Time Access Links**: The tool generates a unique link that can only be used once to access the sensitive data. After the data is accessed, the link is invalidated.
+- **Expiration Time**: Users can choose the expiration time for the link (10 minutes, 30 minutes, or 1 hour). The backend enforces this expiration, ensuring links are invalidated after the specified time.
+- **Google Authentication**: Users must authenticate using Google OAuth before they can use the tool, ensuring that only authorized users can generate and access secure links.
 - **Send via Slack**: Send the generated secure link directly to a Slack user via email.
-- **One-Time Access**: The secure link can only be accessed once, ensuring the data is not exposed multiple times.
 - **Visual Interface**: A simple and user-friendly interface for interacting with the tool.
-- **Environment-agnostic**: Easily configurable via environment variables for different deployment environments.
+
+
 
 ## Requirements
 
@@ -31,13 +34,13 @@ Pass-The-Pass project is a secure data transfer tool that allows employees to se
 
 ## Installation
 
-To get started with the Secure Data Transfer Tool, follow these steps:
+To get started with Pass-The-Pass, follow these steps:
 
 ### 1. Clone the Repository
 
 ```
-git clone https://github.com/your-username/secure-data-transfer-tool.git
-cd secure-data-transfer-tool
+git clone https://github.com/ameerassadi/pass-the-pass.git
+cd pass-the-pass
 ```
 
 ### 2. Install Dependencies
@@ -50,12 +53,12 @@ npm install
 Create a `.env` file in the root directory and add the following environment variables:
 ```
 ENCRYPTION_KEY=your-generated-32-byte-base64-key
+BASE_URL='http://localhost:3000'
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/your/slack/webhook
-PORT=3000
+GOOGLE_CLIENT_ID=google-client-id
+GOOGLE_CLIENT_SECRET=google-client-secret
+SESSION_SECRET=session-secret
 ```
-- `ENCRYPTION_KEY`: A Base64-encoded 32-byte key for AES-256 encryption.
-- `SLACK_WEBHOOK_URL`: Your Slack webhook URL for sending messages.
-- `PORT`: The port number on which the application will run (optional, default is 3000).
 
 ## Usage
 
