@@ -12,6 +12,22 @@ body {
     color: #333;
 }
 
+/* .google-btn {
+    display: inline-block;
+    color: #fff;
+    background-color: #4285F4;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.google-btn:hover {
+    background-color: #357AE8;
+} */
+
 .container {
     background-color: #fff;
     padding: 20px 80px;
@@ -86,6 +102,39 @@ button:hover {
 
 #slack-form {
     margin-top: 20px;
+}
+
+.error {
+    border-color: red;
+    background-color: #ffe6e6;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.expiration-time-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.expiration-time-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.expiration-time-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
 }
 
 @media (max-width: 600px) {

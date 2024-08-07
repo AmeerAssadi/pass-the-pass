@@ -1,39 +1,38 @@
 async function generateLink() {
     const sensitiveData = document.getElementById('sensitiveData').value;
+    const errorMessage = document.getElementById('error-message');
+    const textarea = document.getElementById('sensitiveData');
+    
+    // Clear any previous error message and styles
+    errorMessage.textContent = '';
+    textarea.classList.remove('error');
 
-    const response = await fetch('/api/links/generate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ sensitiveData })
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-        document.getElementById('result').style.display = 'block';
-        document.getElementById('secure-link').innerText = data.link;
-    } else {
-        alert('Failed to generate link.');
+    if (!sensitiveData || sensitiveData.trim() === '') {
+        // Show error if the sensitive data is empty
+        errorMessage.textContent = 'Sensitive data cannot be empty';
+        textarea.classList.add('error');
+        return;
     }
-}
 
-async function sendViaSlack() {
-    const email = document.getElementById('email').value;
-    const link = document.getElementById('secure-link').innerText;
+    const expirationTime = document.getElementById('expirationTime').value;
 
-    const response = await fetch('/api/slack/send', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, link })
-    });
+    try {
+        const response = await fetch('/api/links', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ sensitiveData, expirationTime })
+        });
 
-    if (response.ok) {
-        alert('Link sent via Slack.');
-    } else {
-        alert('Failed to send link.');
+        if (response.ok) {
+            const data = await response.json();
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('secure-link').innerText = data.link;
+        } else {
+            errorMessage.textContent = 'Failed to generate link.';
+        }
+    } catch (error) {
+        errorMessage.textContent = 'An error occurred. Please try again.';
     }
 }

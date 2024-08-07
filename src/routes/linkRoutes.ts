@@ -3,7 +3,8 @@ import { generateLink, viewData } from '../controllers/linkController';
 
 const router = Router();
 
-router.post('/generate', generateLink);
+// Define your routes
+router.post('/', generateLink);
 router.get('/:id', viewData);
 
 export default router;
