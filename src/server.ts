@@ -2,9 +2,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import path from 'path';
 import session from 'express-session';
 import passport from 'passport';
-import path from 'path';
 import { ensureAuthenticated } from './middleware/authMiddleware';
 import sequelize from './database';
 import linkRoutes from './routes/linkRoutes';
@@ -24,6 +24,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../views'));
+
 app.get('/', (req, res) => {
     if (req.isAuthenticated()) {
         res.sendFile(path.join(__dirname, '../public/index.html'));
@@ -32,6 +35,7 @@ app.get('/', (req, res) => {
     }
 });
 
+// Google OAuth Routes
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['email', 'profile'] })
 );
@@ -39,7 +43,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
-        res.redirect('/');
+        res.redirect('/'); // Redirect to the app after successful login
     }
 );
 
@@ -56,6 +60,7 @@ app.get('/logout', (req, res, next) => {
         res.redirect('/');
     });
 });
+
 
 sequelize.sync().then(() => {
     const PORT = process.env.PORT || 3000;

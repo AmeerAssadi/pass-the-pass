@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass The Pass</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pass The Pass</h1>
+        <p>Your secret data is ready to view. Click the button below to reveal it.</p>
+        <button id="reveal-button">Reveal Secret Data</button>
+        <div id="secret-data" style="display:none;">
+            <h2>Secret Data:</h2>
+            <p id="data-content"><%= decryptedData %></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('reveal-button').addEventListener('click', function() {
+            document.getElementById('secret-data').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
